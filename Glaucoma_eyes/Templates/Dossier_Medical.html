@@ -1,0 +1,326 @@
+{% extends "Dashboard.html" %}
+
+
+{% block content %}
+<div class="container">
+
+<div id="breadcrumbs-wrapper">
+    <!-- Search for small screen -->
+    <div class="row">
+        <div class="input-field col s12">
+            <h5 class="breadcrumbs-title">Gestion  des consultations</h5>
+        </div>
+        <div class="input-field col s12">
+            <ol class="breadcrumbs">
+                <li><a  class="active" href="/listePatient_Consultation"><span class="material-icons">list</span>liste des patients </a></li>
+                <li><a  ><span class="material-icons">add_box</span>Fiche consultation</a>
+                </li>
+            </ol>
+
+
+        </div>
+    </div>
+
+</div>
+
+<div class="col s12 m4 20">
+    <div class="card">
+        <ul id="task-card" class="collection with-header">
+            <li class="collection-header teal accent-4">
+                <h5 class="task-card-title center-align">Identification du patient</h5>
+            </li>
+            <li class="collection-item">
+                <div class="row">
+                    <div class="col s3">
+                        <div class="input-field col s12">
+                            <input id="NomPrenom" type="text" name="nom" readonly
+                                   value="{{ data['Nom_Pat'] }} {{ data['Prenom_Pat'] }}">
+                            <label for="NomPrenom">Nom & Prénom</label>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="input-field col s12">
+                            <input id="sexe" type="text" name="sexe" value="{{ data['Sexe_Pat'] }}" readonly>
+                            <label for="sexe">Sexe</label>
+                        </div>
+
+                    </div>
+                    <div class="col s3">
+                        <div class="input-field col s12">
+                            <input id="age" type="text" name="age" value="" readonly>
+                            <label for="age">Age</label>
+                        </div>
+
+                    </div>
+                    <div class="col s3">
+                        <div class="input-field col s12">
+                            <a href="/ParametreMedicaux/{{ data['ID_Pat'] }}">
+                                <button class="btn waves-effect waves-light right" type="submit" name="action">nouvelle fiche
+                                    <i class="material-icons right">add</i>
+                                </button>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+
+
+
+<div id="work-collections">
+    <div class="row">
+        <div class="col s12 m12 l6">
+            <ul id="issues-collections" class="collection z-depth-1">
+                <li class="red lighten-2">
+                    <i class="material-icons red accent-2 circle"></i>
+                    <h5 class="task-card-title center-align white-text">Traitements en cours</h5>
+                </li>
+
+                <div id="traitement" class="card">
+
+                    <div class="card-content">
+
+
+                        <table class="centered">
+                            <thead>
+                            <tr>
+                                <th data-field="id">date</th>
+                                <th data-field="price">médicament</th>
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for row in trait %}
+                            <tr>
+
+                                <td class="collection-item dismissable">{{row["Nom_Trait"]}}</td>
+                                <td class="collection-item dismissable">{{row["Date_Trait"]}}</td>
+
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <a class="btn-floating activator btn-move-up waves-effect waves-light red accent-2 z-depth-4 right" data-toggle="modal" href="#myModal2">
+                            <i class="material-icons">edit</i>
+                        </a>
+                    </div>
+
+
+                </div>
+            </ul>
+        </div>
+
+
+        <div class="col s12 m12 l6">
+            <ul id="issues-collection" class="collection z-depth-1">
+                <li class="light-blue lighten-1">
+                    <i class="material-icons red accent-2 circle"></i>
+                    <h5 class="task-card-title center-align white-text">Antécédent ophtamologique et medical </h5>
+                </li>
+
+                <div id="profile-card" class="card">
+
+                    <div class="card-content">
+                        <table class="centered">
+                            <thead>
+                            <tr>
+                                <th data-field="price">Nom</th>
+                                <th data-field="Obsversavation">Observation</th>
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for row in Ant %}
+                            <tr>
+                                <td class="collection-item dismissable">{{row["Nom"]}}</td>
+                                <td class="collection-item dismissable">{{row["Observation"]}}</td>
+
+
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <a class="btn-floating activator btn-move-up waves-effect waves-light red accent-2 z-depth-4 right"
+                           data-toggle="modal" href="#myModal">
+                            <i class="material-icons">edit</i>
+                        </a>
+
+                    </div>
+                </div>
+
+            </ul>
+
+        </div>
+    </div>
+</div>
+<div class="col s12 m4 20">
+    <div class="card">
+        <ul id="tasks-card" class="collection with-header">
+            <li class="collection-header  deep-purple lighten-4">
+
+                <h5 class="task-card-title center-align">Historique médicale</h5>
+            </li>
+            <table class="centered">
+                <thead>
+                <tr>
+                    <th data-field="id">date</th>
+                    <th data-field="price"></th>
+                    <th data-field="name">Motif</th>
+                    <th data-field="price"></th>
+                    <th data-field="price">Diagnostics</th>
+                    <th data-field="price">détail de consultation</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="collection-item dismissable">Alvin</td>
+                    <td class="collection-item dismissable"></td>
+                    <td class="collection-item dismissable">Eclair</td>
+                    <td class="collection-item dismissable"></td>
+                    <td class="collection-item dismissable">$0.87</td>
+                    <td class="collection-item dismissable"><a href="#">
+                        <span class="material-icons">folder_open</span>
+                    </a></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </ul>
+    </div>
+</div>
+
+<div>
+    <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <div id="myModal" class="modal fade">
+
+
+        <div class="modal-header">
+
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+            <h4 class="modal-title"> Ajouter des antécedants</h4>
+
+
+        </div>
+
+
+        <div class="modal-body">
+
+
+            <form action="{{ url_for('Antecedants_patient') }}" method="POST">
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="Nom_Ante" type="text" name="Nom_Antecedant" required>
+                            <label for="Nom_Ante">Nom</label>
+                        </div>
+                    </div>
+                    <input type="hidden" name="IDPatient" value="{{ data['ID_Pat'] }}">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="obv" type="text" name="Observation">
+                            <label for="obv">Observation</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <button class="btn waves-effect waves-light right" type="submit" name="action">
+                        Enregistrer
+                        <i class="material-icons right">archive</i>
+                    </button>
+                    <button type="button" class="btn waves-effect waves-light left" data-dismiss="modal">Fermer<i
+                            class="material-icons right">close</i></button>
+
+
+                </div>
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+    <div id="myModal2" class="modal fade">
+         <div class="modal-header">
+
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+            <h4 class="modal-title"> Ajouter un Traitement </h4>
+
+
+        </div>
+        <div class="modal-body">
+
+
+            <form action="{{ url_for('traitement_en_cours') }}" method="POST">
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="date_Traitement" type="date" name="date">
+                            <label for="date_Traitement">Date</label>
+                        </div>
+                    </div>
+                    <input type="hidden" name="IDPatient" value="{{ data['ID_Pat'] }}">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="name" type="text" name="medicament" value="">
+                            <label for="name">Médicament</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <button class="btn waves-effect waves-light right" type="submit" name="action">
+                        Enregistrer
+                        <i class="material-icons right">archive</i>
+                    </button>
+                    <button type="button" class="btn waves-effect waves-light left" data-dismiss="modal">Fermer<i
+                            class="material-icons right">close</i></button>
+
+
+                </div>
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+</div>
+    </div>
+
+
+
+
+{% endblock content %}
+

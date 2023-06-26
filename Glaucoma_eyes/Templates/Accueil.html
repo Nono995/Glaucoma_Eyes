@@ -1,0 +1,72 @@
+{% extends "Fichemedicale2.html" %}
+
+{% block content %}
+<div id="card-stats">
+    <div class="row mt-1">
+        <div class="col s12 m6 l3">
+            <div class="card gradient-45deg-light-blue-cyan gradient-shadow min-height-100 white-text">
+                <div class="padding-4">
+                    <div class="col s7 m7">
+                        <i class="material-icons background-round mt-5">perm_contact_calendar</i>
+                        <p>Rendez-vous</p>
+                    </div>
+                    <div class="col s5 m5 right-align">
+                        <h5 class="mb-0">{{ rendezvous["nbre"]}} </h5>
+                        <p class="no-margin">Aujourd'hui</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6 l3">
+            <div class="card gradient-45deg-red-pink gradient-shadow min-height-100 white-text">
+                <div class="padding-4">
+                    <div class="col s7 m7">
+                        <i class="material-icons background-round mt-5">perm_identity</i>
+                        <p>Patients</p>
+                        <p> {{ NbreClients["nbre"]}}</p>
+                    </div>
+                    <div class="col s5 m5 right-align">
+                        <h5 class="mb-0">{{ femme ["nbre"]}} </h5>
+                        <p class="no-margin">Femmes</p>
+                        <h5 class="mb-0">{{ homme ["nbre"]}} </h5>
+                        <p class="no-margin">Hommes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col s12">
+        <div class="card-panel">
+            <div class="slider">
+                <ul class="slides">
+
+                    <li>
+                        <img src="https://lorempixel.com/580/250/nature/1" > <!-- random image -->
+                        <div class="caption center-align">
+                            <h3>Centre médicale Innel</h3>
+                            <h5 class="light grey-text text-lighten-3">médecine ,ophtamologie,chirugie.</h5>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ url_for('static', filename='images/avatar/glaucome.jpg') }}">
+                        <div class="caption left-align">
+                            <h3> le glaucome vole la vue</h3>
+                            <h5 class="light grey-text text-lighten-3">Le glaucome est une maladie grave des yeux Mais la plupart d'entre eux l'ignorent </h5>
+                        </div>
+                    </li>
+
+
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

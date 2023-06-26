@@ -1,0 +1,126 @@
+<link rel="stylesheet" id="bookly-picker-date-css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="bookly-main-css" href="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/master/build/css/bootstrap-datetimepicker.css" type="text/css" media="all">
+{% extends "Dashboard.html" %}
+
+
+{% block content %}
+<div id="breadcrumbs-wrapper">
+    <div class="row">
+        <div class="input-field col s12">
+            <h5 class="breadcrumbs-title">Gestion des rendez-vous</h5>
+        </div>
+        <div class="input-field col s12">
+           <ol class="breadcrumbs">
+
+
+                     <li ><a href="/Rendez_vous" ><span class="material-icons">add_box</span>Nouveau rendez-vous</a></li>
+                     <li ><a href="/Planning_Rdv" class="active"><span class="material-icons">perm_contact_calendar</span>Mon planning</a></li>
+
+           </ol>
+
+        </div>
+    </div>
+</div>
+
+
+<div id="basic-form" class="section">
+        <div class="row">
+            <div class="col s12 m12 12">
+                <div class="card-panel">
+
+                    <div class="row">
+                        <form class="col s12"  method = "POST">
+                            <div class="row light-blue lighten-5">
+                                <h6 class="breadcrumbs-title center">Information sur le patient</h6>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="Nom" type="text" name="Nom">
+                                    <label for="Nom">Nom du particulier</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="Tel" type="tel" name="Tel">
+                                    <label for="Tel">Telephone</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="Obs" class="materialize-textarea" name="Obs"></textarea>
+                                    <label for="Obs">Observation</label>
+                                </div>
+                            </div>
+
+                            <div class="row light-blue lighten-5">
+                                <h6 class="breadcrumbs-title center">Information sur le rendez-vous</h6>
+                            </div>
+                            <div class="row">
+
+                                <div class="input-field col s6">
+                                  <div id="ScheduledAt1" class="input-group">
+                                    <input type="text" class="form-control" name="dateRdv">
+                                    <span class="input-group-addon">
+                                      <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                  </div>
+                                </div>
+
+                                <div class="input-field col s6">
+                                  <div id="ScheduledAt" class="input-group">
+                                    <input type="text" class="form-control" name="TimeRdv">
+                                    <span class="input-group-addon">
+                                      <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                  </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <button class="btn waves-effect waves-light right" type="submit" name="action">
+                                       Enregistrer
+                                        <i class="material-icons right">send</i>
+                                    </button>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript">
+$('#ScheduledAt').datetimepicker({
+    format: 'HH:mm',
+    toolbarPlacement: 'top',
+		showClear: true,
+		showClose: true,
+		sideBySide: true,
+    daysOfWeekDisabled: [0, 7],
+    stepping: 15,
+    enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+})
+
+</script>
+<script type="text/javascript">
+    $('#ScheduledAt1').datetimepicker({
+        format: 'YYYY-MM-DD',
+        toolbarPlacement: 'top',
+            showClear: true,
+            showClose: true,
+            sideBySide: true,
+        daysOfWeekDisabled: [0, 6],
+        minDate: new Date(),
+        stepping: 15,
+        enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+    })
+
+</script>
+
+    </div>
+
+
+{% endblock content %}

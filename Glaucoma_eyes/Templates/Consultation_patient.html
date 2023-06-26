@@ -1,0 +1,217 @@
+{% extends "Fichemedicale2.html" %}
+
+
+{% block content %}
+
+<div id="breadcrumbs-wrapper">
+    <!-- Search for small screen -->
+    <div class="row">
+        <div class="input-field col s12">
+            <h5 class="breadcrumbs-title">Gestion des consultations</h5>
+        </div>
+        <div class="input-field col s12">
+            <ol class="breadcrumbs">
+                <li><a  href="/Getlisting" class="active"><span class="material-icons">list</span>liste
+                    des patients </a></li>
+                <li><a><span class="material-icons">add_box</span>consultations </a>
+            </ol>
+
+
+        </div>
+    </div>
+
+</div>
+<div id="dossier_modal" class="modal">
+        <div class="modal-header center-align">
+            <h5> Fiche Antecedent du patient</h5>
+        </div>
+        <div class="modal-content">
+             <div id="flight-card" class="card">
+            <div class="card-header light-blue darken-2">
+                <div class="card-title">
+                    <h5 class="flight-card-title center-align">Antécédent ophtamologique et médicale</h5>
+                </div>
+
+            </div>
+            <div class=" centered back-text">
+                <table>
+                    <thead>
+                    <tr>
+
+                        <th>Antécédents médicaux</th>
+                        <th>Antécédents ophtamologique</th>
+                        <th>Antécédents familiaux</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for row in Ant %}
+                    <tr>
+
+                        <td>{{row["Ante_oph"]}}</td>
+                        <td>{{row["Ante_med"]}}</td>
+                        <td>{{row["Ante_familliaux"]}}</td>
+
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+            <div class="modal-footer">
+                <a href="#!" class="modal-action
+					modal-close waves-effect waves-green
+					btn green lighten-1">
+                    Close
+                </a>
+            </div>
+        </div>
+
+    </div>
+<div class="row">
+              <div class="col s12 m12 l12">
+
+                   <div class="card-panel">
+                        <h4 class="header2 center">Parametre <a class=" btn-floating btn-flat waves-effect waves-light  pink accent-2 white-text modal-trigger" href="#dossier_modal" >
+                        <i class="material-icons">assignment_ind</i>
+                      </a></h4>
+                        <div class="row">
+                            <div class="row">
+                        <div class="input-field col s12">
+                            <input type="text"  name="motif" value="{{ para['motif'] }}" readonly>
+
+                            <label>Motif de la consultation</label>
+
+                        </div>
+                     </div>
+                            <form class="col s12">
+                                <table class="bordered">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Oeil Droite</th>
+                        <th>Oeil Gauche</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>Acuite Visuel</th>
+                        <td><input type="text" class="validate" name="AcuiteD" readonly value="{{ para['AVD'] }}"></td>
+                        <td><input type="text" class="validate" name="AcuiteG" readonly value="{{ para['AVG'] }}"></td>
+                    </tr>
+                    <tr>
+                        <th>Tension Intraoculaire(PIO)</th>
+                        <td><input type="text" class="validate" name="POID" readonly value="{{ para['PIOD'] }}"></td>
+                        <td><input type="text" class="validate" name="PIOG" readonly value="{{ para['PIOG'] }}"></td>
+                    </tr>
+                    <tr>
+                        <th>lampe a Fente</th>
+                        <td><input type="text" class="validate" name="LAPD" readonly  value="{{ para['LAPD'] }}"></td>
+                        <td><input type="text" class="validate" name="LAPG" readonly  value="{{ para['LAPG'] }}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                            </form>
+                        </div>
+                    </div>
+
+              </div>
+            </div>
+<div class="row">
+    <div class="col s12 m12 l12">
+         <h4 class="header2 center">Tester le glaucome</h4>
+        <div class=" card-panel">
+    <div class="row">
+        <form class="col s12" method="POST" enctype="multipart/form-data" action="{{ url_for('Resultat') }}">
+            <input type="text" value="{{ para['ID_Parametre'] }}" name="idparametre" hidden>
+            <table class="bordered">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Oeil Droite</th>
+                    <th>Oeil Gauche</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>Acuite Visuel</th>
+                    <td>
+                        <div class="fileupload fileupload-new col s6" data-provides="fileupload">
+                            <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image"
+                                     alt=""/>
+                            </div>
+                            <div class="fileupload-preview fileupload-exists thumbnail"
+                                 style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                            <div>
+                        <span class="btn btn-theme02 btn-file">
+                          <span class="fileupload-new"><i class=""></i> Selectionner image</span>
+                        <span class="fileupload-exists"><i class="material-icons">undo</i> Changer</span>
+                        <input type="file" class="default" accept="image/png, image/jpeg" name="imagefileD"
+                               id="oeilD" required/>
+                        </span>
+                                <a href="advanced_form_components.html#"
+                                   class="btn btn-theme04 fileupload-exists"
+                                   data-dismiss="fileupload"><i
+                                        class="material-icons">delete_forever</i>Effacer</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="fileupload fileupload-new col s6" data-provides="fileupload">
+                            <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image"
+                                     alt=""/>
+                            </div>
+                            <div class="fileupload-preview fileupload-exists thumbnail"
+                                 style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                            <div>
+                        <span class="btn btn-theme02 btn-file">
+                          <span class="fileupload-new"><i class=""></i> Selectionner image</span>
+                        <span class="fileupload-exists"><i class="material-icons">undo</i> Changer</span>
+                        <input type="file" class="default" accept="image/png, image/jpeg" name="imagefileG"
+                               id="oeilG" required/>
+                        </span>
+                                <a href="advanced_form_components.html#"
+                                   class="btn btn-theme04 fileupload-exists"
+                                   data-dismiss="fileupload"><i
+                                        class="material-icons">delete_forever</i>Effacer</a>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="input-field col s3">
+
+
+                </div>
+                <div class="input-field col s3">
+
+
+                </div>
+                <div class="input-field col s3">
+
+                </div>
+                <div class="input-field col s3">
+
+                    <button class="btn waves-effect waves-light" type="submit" name="action">
+                        <i class="material-icons">track_changes</i> Analyser
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+</div>
+</div>
+
+
+{% endblock content %}

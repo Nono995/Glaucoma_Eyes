@@ -1,0 +1,220 @@
+{% extends "Dashboard.html" %}
+<link rel="stylesheet" href=
+"https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+	<link href=
+"https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script type="text/javascript" src=
+		"https://code.jquery.com/jquery-2.1.1.min.js">
+	</script>
+	<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js">
+	</script>
+{% block content %}
+<div>
+    <div class="card-panel center">
+		<h3>Geeks for Geeks</h3>
+		<!-- Modal Trigger -->
+		<a class="waves-effect waves-light btn
+			green darken-1 modal-trigger"
+			href="#demo-modal">
+			Click Here!
+		</a>
+
+		<!-- Modal Structure -->
+		<div id="demo-modal" class="modal">
+			<div class="modal-content">
+				<h4>Demo of Simple Modal</h4>
+				<p>
+				<div class="red-text">
+					Content of the modal goes here. <br>
+					Type information here. <br>
+				</div>
+				C is a procedural programming language.
+				It was initially developed by Dennis
+				Ritchie as a system programming language
+				to write operating system. The main
+				features of C language include low-level
+				access to memory, simple set of keywords,
+				and clean style, these features make C
+				language suitable for system programming
+				like operating system or compiler development.
+				</p>
+			</div>
+
+			<div class="modal-footer">
+				<a href="#!" class="modal-action
+					modal-close waves-effect waves-green
+					btn green lighten-1">
+					Close
+				</a>
+			</div>
+		</div>
+	</div>
+	<script>
+		$(document).ready(function () {
+			$('.modal').modal();
+		}
+		)
+	</script>
+</div>
+<div id="breadcrumbs-wrapper">
+    <!-- Search for small screen -->
+    <div class="row">
+        <div class="input-field col s12">
+            <h5 class="breadcrumbs-title">Gestion du patient</h5>
+        </div>
+        <div class="input-field col s12">
+            <ol class="breadcrumbs">
+                <li><a href="/patient"><span class="material-icons">list</span>liste des patients </a></li>
+                <li><a href="/NouveauPatient" class="active"><span class="material-icons">add_box</span>Nouveau
+                    patient</a>
+                </li>
+            </ol>
+
+
+        </div>
+    </div>
+
+</div>
+<div id="basic-form" class="section">
+    <div class="divider"></div>
+    <div id="responsive-table">
+
+        <div class="row">
+
+            <div class="col s12">
+                <table class="responsive-table" cellpadding="0" cellspacing="0" border="0" id="hidden-table-info">
+                    <thead>
+                    <tr>
+
+                        <th data-field="nom">Nom et Prenom</th>
+                        <th data-field="sexe">sexe</th>
+                        <th data-field="mail">Email</th>
+                        <th data-field="tel">Numéro</th>
+                        <th data-field="tel">Profession</th>
+                        <th data-field="tel">Asurance</th>
+
+                        <th data-field="Consultation"> Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for row in rep %}
+                    <tr>
+                        <td>{{row["ID_Pat"]}}</td>
+                        <td>{{row["Nom_Pat"]}} {{row["Prenom_Pat"]}}</td>
+                        <td>{{row["Sexe_Pat"]}}</td>
+                        <td>{{row["Email_Pat"]}}</td>
+                        <td>{{row["Tel_Pat"]}}</td>
+                         <td>{{row["Profession_Pat"]}}</td>
+                         <td>{{row["Profession_Pat"]}}</td>
+                        <td><a  class="waves-effect waves-cyan"  data-toggle="modal" href="#myModal" data-target="{{row["Email_Pat"]}}">
+                            <i class="material-icons">description</i>
+
+                            </a></td>
+                    </tr>
+
+
+                    </tbody>
+                    <div>
+    <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <div id="myModal{{row["ID_Pat"]}}" class="modal fade">
+
+
+        <div class="modal-header">
+
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+            <h4 class="modal-title"> Informations sur le patient </h4>
+
+
+        </div>
+
+
+        <div class="modal-body">
+
+
+           <div class="row">
+                        <form class="col s12" action = "{{ url_for('ModifierPatient') }}"  method = "POST">
+                            <div class="row">
+                                <input type="text" name="ID_Patient" value="{{row["ID_Pat"]}}" >
+                                <div class="input-field col s6">
+                                    <input id="sNom" type="text" name="Nom" value="{{row["Nom_Pat"]}}">
+                                    <label for="sNom">Nom</label>
+                                </div>
+                                 <div class="input-field col s6">
+                                    <input id="Psrenom" type="text" name="Prenom" value="{{row["Prenom_Pat"]}}">
+                                    <label for="Psrenom">Prenom</label>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="emails" type="email" name="email" value="{{row["Email_Pat"]}}">
+                                    <label for="emails">Email</label>
+                                </div>
+                                <div class="input-field col s6">
+                                        <input id="numeros" type="tel" name="Tel" value="{{row["Tel_Pat"]}}" >
+                                        <label for="numeros">Télephone</label>
+                                    </div>
+                            </div>
+
+
+
+
+                                    <div class="row">
+                                 <div class="input-field col s12">
+                                    <input id="Profession" type="text" name="Profession" value="{{row["Profession_Pat"]}}" >
+                                    <label for="Profession">Profession</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                 <div class="input-field col s12">
+                                    <input id="Assurance" type="text" name="Assurance"  value="{{row["Assurance_Pat"]}}" >
+                                    <label for="Assurance">Assurance</label>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <button class="btn waves-effect waves-light right" type="submit" name="action">
+                                       Enregistrer
+                                        <i class="material-icons right">send</i>
+                                    </button>
+                                    <button type="button" class="btn waves-effect waves-light left" data-dismiss="modal">Fermer<i
+                            class="material-icons right">close</i></button>
+                                </div>
+                            </div>
+
+                    </form>
+                </div>
+
+        </div>
+
+
+    </div>
+                    </div>
+
+
+
+
+
+</div>
+            {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+{% endblock content %}

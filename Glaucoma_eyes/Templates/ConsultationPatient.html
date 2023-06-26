@@ -1,0 +1,236 @@
+{% extends "Dashboard.html" %}
+{% block content %}
+<div id="breadcrumbs-wrapper">
+    <!-- Search for small screen -->
+    <div class="header-search-wrapper grey lighten-2 hide-on-large-only">
+        <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Explore Materialize">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title">Gestion des consultations </h5>
+                <ol class="breadcrumbs">
+
+                    <li><a href="/">liste des consultation</a></li>
+                    <li><a href="/Consultation_Patient">Nouvelle Consultation</a>
+                    </li>
+
+
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col s12 m4 20">
+    <div class="card">
+        <ul id="task-card" class="collection with-header">
+            <li class="collection-header teal accent-4">
+                <h5 class="task-card-title center-align">Identification du patient</h5>
+            </li>
+            <li class="collection-item">
+                <div class="row">
+                    <div class="col s6">
+                        <div class="input-field col s12">
+                            <input id="NomPrenom" type="text" name="nom" readonly
+                                   value="{{ data['Nom_Pat'] }} {{ data['Prenom_Pat'] }}">
+                            <label for="NomPrenom">Nom & Prénom</label>
+                        </div>
+
+                    </div>
+                    <div class="col s3">
+                        <div class="input-field col s12">
+                            <input id="sexe" type="text" name="sexe" readonly value="{{ data['Sexe_Pat'] }}">
+                            <label for="sexe">Sexe</label>
+                        </div>
+
+                    </div>
+                    <div class="col s3">
+                        <div class="input-field col s12">
+                            <input id="age" type="text" name="age" readonly>
+                            <label for="age">Age</label>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+<div id="basic-form" class="section">
+
+    <div class="row">
+
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card-panel">
+                    <div class="row">
+                        <form class="col s12" method="post" enctype="multipart/form-data"
+                              action="{{ url_for('predire') }}">
+                            <div class="row">
+
+                                <div class="input-field col s9">
+
+                                     <h4 class="header2"> Elements de consultation</h4>
+
+                                </div>
+
+                                <div class="input-field col s3" >
+                                    <i class="material-icons prefix" >perm_contact_calendar</i>
+                                    <input type="text" class="datepicker">
+
+
+
+
+                                </div>
+                            </div>
+           <input type="hidden" name="idparametre" value="{{ para['ID_Parametre'] }}">
+                            <input type="hidden" name="IDpatient" value="{{ data['ID_Pat'] }}">
+                            <input type="hidden" name="IDmedecin" value="{{ med['ID_Med'] }}">
+                            <div class="row">
+
+                                <div class="input-field col s9">
+                                    <textarea id="message3" class="materialize-textarea" name="Motif"></textarea>
+                                    <label>Motif</label>
+
+                                </div>
+                                <div class="input-field col s3">
+                                    <textarea id="message2" class="materialize-textarea" name="Observation"></textarea>
+                                    <label>Autres observations</label>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+
+                                    <input id="icon_prefix" type="text" class="validate" name="TensionGauche">
+                                    <label for="icon_prefix">Tension de l'oeil gauche</label>
+                                </div>
+                                <div class="input-field col s6">
+
+                                    <input id="icon_password" type="text" class="validate" name="TensionDroite">
+                                    <label for="icon_password">Tension de l'oeil droite </label>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+
+                                    <input id="acuiteG" type="text" class="validate" name="acuiteGauche">
+                                    <label for="acuiteG">Acuité de l'oeil gauche</label>
+                                </div>
+                                <div class="input-field col s6">
+
+                                    <input id="acuiteD" type="text" class="validate" name="acuiteDroite">
+                                    <input id="acuiteD" type="text" class="validate" name="acuiteDroite">
+                                    <label for="acuiteD">Acuité de l'oeil droite </label>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <label for="oeilG">Fond de l'oeil Droite</label>
+
+                                        <div class="fileupload fileupload-new col s6" data-provides="fileupload">
+                                            <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image"
+                                                     alt=""/>
+                                            </div>
+                                            <div class="fileupload-preview fileupload-exists thumbnail"
+                                                 style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                            <div>
+                        <span class="btn btn-theme02 btn-file">
+                          <span class="fileupload-new"><i class=""></i> Selectionner image</span>
+                        <span class="fileupload-exists"><i class="material-icons">undo</i> Changer</span>
+                        <input type="file" class="default" accept="image/png, image/jpeg,image/tif" name="imagefileG"
+                               id="oeilG"/>
+                        </span>
+                                                <a href="advanced_form_components.html#"
+                                                   class="btn btn-theme04 fileupload-exists"
+                                                   data-dismiss="fileupload"><i
+                                                        class="material-icons">delete_forever</i>Effacer</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <label for="oeilD">Fond de l'oeil gauche</label>
+
+                                        <div class="fileupload fileupload-new col s6" data-provides="fileupload">
+                                            <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image"
+                                                     alt=""/>
+                                            </div>
+                                            <div class="fileupload-preview fileupload-exists thumbnail"
+                                                 style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                            <div>
+                        <span class="btn btn-theme02 btn-file">
+                          <span class="fileupload-new"><i class=""></i> Selectionner image</span>
+                        <span class="fileupload-exists"><i class="material-icons">undo</i> Changer</span>
+                        <input type="file" class="default" accept="image/png, image/jpeg,image/tif" name="imagefileD"
+                               id="oeilD"/>
+                        </span>
+                                                <a href="advanced_form_components.html#"
+                                                   class="btn btn-theme04 fileupload-exists"
+                                                   data-dismiss="fileupload"><i
+                                                        class="material-icons">delete_forever</i>Effacer</a>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s4">
+                                        <p>a</p>
+                                    </div>
+                                    <div class="input-field col s4">
+
+                                    </div>
+                                    <div class="input-field col s4">
+                                        <p>b</p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <button class="btn waves-effect waves-light right" type="submit" name="action">
+                                            Analyser<a data-toggle="modal" href="#myModal"></a>
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div>
+    <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
+<div id="myModal" class="modal fade">
+         <div class="modal-header">
+
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+            <h4 class="modal-title"> Ajouter un Traitement </h4>
+
+
+        </div>
+        <div class="modal-body">
+
+
+
+
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock content %}

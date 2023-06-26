@@ -1,0 +1,95 @@
+{% extends "Dashboard.html" %}
+
+{% block content %}
+<div id="breadcrumbs-wrapper">
+    <!-- Search for small screen -->
+    <div class="row">
+        <div class="input-field col s12">
+            <h5 class="breadcrumbs-title">Gestion  des consultations</h5>
+        </div>
+        <div class="input-field col s12">
+            <ol class="breadcrumbs">
+                <li><a href="/Getlisting"><span class="material-icons">list</span>liste des patients </a></li>
+                <li><a  class="active"><span class="material-icons">folder_shared</span>Consultation</a>
+                </li>
+            </ol>
+
+
+        </div>
+    </div>
+
+</div>
+<div id="basic-form" class="section">
+    <div class="divider"></div>
+    <div id="responsive-table">
+        <div class="row">
+            <div class="col s12">
+                <table class="responsive-table" cellpadding="0" cellspacing="0" border="0" id="hidden-table-info">
+                    <thead>
+                    <tr>
+                         <th data-field="date">Date de prise des paramètre</th>
+                        <th data-field="id">Nom et Prenom</th>
+                        <th data-field="name">sexe</th>
+                     <!--   <th data-field="price">nais</th>-->
+                        <th data-field="price">age</th>
+
+
+                        <th data-field="Consultation">Consultation</th>
+                    </tr>
+                    </thead>
+                    <tbody onload="getAges()">
+                    {% for row in rep %}
+                    <tr>
+                        <td>{{row["date_parametre"]}}</td>
+                        <td>{{row["Nom_Pat"]}} {{row["Prenom_Pat"]}}</td>
+                        <td>{{row["Sexe_Pat"]}} </td>
+                        <input id="showtime" type="hidden" readonly class="validate" required>
+                         <input id="dateNais" type="hidden" name="dataNais" value="{{row["DateNais"]}}">
+
+                        <td >
+                         <input id="icon_age" type="text" name="icon_age" readonly value="" ></td>
+
+                        <td><a href="/VerificationFond/{{row["ID_Parametre"]}}" class="waves-effect waves-cyan"  >
+                            <i class="material-icons">folder_shared</i> ouvrir le dossier medicale
+
+                            </a></td>
+                    </tr>
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    function getAge() {
+        var birthday = document.getElementById("dateNais").value;
+        var years = new Date(new Date() - new Date(birthday)).getFullYear() - 1970;
+        if(years<0){
+            years=0;
+            document.getElementById("age").value=years+" ans";
+        }else if(years==0){
+            var mois = new Date(new Date() - new Date(birthday)).getMonth();
+            if(mois<0){
+                mois=0;
+                document.getElementById("age").value=mois+" mois";
+            }else if(mois==0){
+                var day = new Date(new Date() - new Date(birthday)).getDate();
+                if(day<0){
+                    day=0;
+                }
+                document.getElementById("age").value=day+" jours";
+            }else{
+                document.getElementById("age").value=mois+" mois";
+            }
+        }else{
+            document.getElementById("age").value=years+" ans";
+        }
+    }
+
+</script>
+
+
+{% endblock content %}
