@@ -1,0 +1,178 @@
+{% extends "Dashboard.html" %}
+
+{% block content %}
+<div id="breadcrumbs-wrapper">
+    <div class="row">
+        <div class="input-field col s12">
+            <h5 class="breadcrumbs-title">Gestion du patient</h5>
+        </div>
+        <div class="input-field col s12">
+           <ol class="breadcrumbs">
+
+
+                    <li ><a href="/modal" class="active"><span class="material-icons">list</span>liste des patients </a></li>
+                     <li><a href="/NouveauPatient"><span class="material-icons">add_box</span>Nouveau patient</a>
+                    </li>
+
+
+                </ol>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+ <div id="settings" class="col s12">
+
+ </div>
+
+
+    <div id="basic-form" class="section">
+        <div class="row">
+            <div class="col s12 m12 12">
+                <div class="card-panel">
+
+                    <div class="row">
+                        <form class="col s12" action = "{{ url_for('EnregistrerNouveauPatient') }}"  method = "POST">
+                            <div class="row light-blue lighten-5">
+                                <h6 class="breadcrumbs-title center">Information sur le patient</h6>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="Nom" type="text" name="Nom" required>
+                                    <label for="Nom">Nom</label>
+                                </div>
+                                 <div class="input-field col s6">
+                                    <input id="Epse" type="text" name="Epse" >
+                                    <label for="Epse">Epouse</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                 <div class="input-field col s12">
+                                    <input id="Prenom" type="text" name="Prenom" >
+                                    <label for="Prenom">Prenom</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="dateNais" type="date" name="dataNais" onchange="getAge()" required>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="age" type="text" name="age" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                 <div class="input-field col s12">
+                                    <input id="LieuNaiss" type="text" name="LieuNaiss" >
+                                    <label for="LieuNaiss">Lieu de naissance</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                 <div class="input-field col s12">
+                                    <input id="Origin" type="text" name="Origin" >
+                                    <label for="Origin">Origine</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                 <div class="input-field col s12">
+                                    <input id="Profession" type="text" name="Profession" >
+                                    <label for="Profession">Profession</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                 <div class="input-field col s12">
+                                    <input id="Assurance" type="text" name="Assurance"  required>
+                                    <label for="Assurance">Assurance</label>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                    <input id="femme" type="radio" name="sexe" value="0" checked >
+                                    <label for="femme">Feminim</label>
+                                    <input id="homme" type="radio" name="sexe" value="1" >
+                                    <label for="homme">masculin</label>
+
+                            </div>
+
+                            <div class="row light-blue lighten-5">
+                                <h6 class="breadcrumbs-title center">Coordonnées du patient</h6>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="email" type="email" name="email">
+                                    <label for="email">Email</label>
+                                </div>
+                                <div class="input-field col s6">
+                                        <input id="numero" type="number" name="Tel" maxlength="9" size="9" required>
+                                        <label for="numero">Télephone</label>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                 <div class="input-field col s12">
+                                    <input id="Adresse" type="text" name="Adresse" >
+                                    <label for="Adresse">Adresse</label>
+                                </div>
+                            </div>
+
+
+
+                                <div class="row">
+
+                                </div>
+
+
+
+
+
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <button class="btn waves-effect waves-light right" type="submit" name="action">
+                                       Enregistrer
+                                        <i class="material-icons right">send</i>
+                                    </button>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+<script>
+    function getAge() {
+        var birthday = document.getElementById("dateNais").value;
+        var years = new Date(new Date() - new Date(birthday)).getFullYear() - 1970;
+        if(years<0){
+            years=0;
+            document.getElementById("age").value=years+" ans";
+        }else if(years==0){
+            var mois = new Date(new Date() - new Date(birthday)).getMonth();
+            if(mois<0){
+                mois=0;
+                document.getElementById("age").value=mois+" mois";
+            }else if(mois==0){
+                var day = new Date(new Date() - new Date(birthday)).getDate();
+                if(day<0){
+                    day=0;
+                }
+                document.getElementById("age").value=day+" jours";
+            }else{
+                document.getElementById("age").value=mois+" mois";
+            }
+        }else{
+            document.getElementById("age").value=years+" ans";
+        }
+    }
+
+</script>
+{% endblock content %}

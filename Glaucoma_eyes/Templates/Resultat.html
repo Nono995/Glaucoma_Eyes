@@ -1,0 +1,108 @@
+{% extends "Dashboard.html" %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="col s12 m12 l12">
+        <div class="card-panel">
+            <div class="row">
+                <form class="col s12" action = "{{ url_for('Validation') }}"  method = "POST">
+                    <h4 class="header2">TESTE DE GLAUCOME</h4>
+                    <input id="showtime" type="text" readonly class="validate" name="date" required>
+                    <div class="row">
+
+                        <input type="text" value="{{idparametre}}" name="idparametre" hidden>
+                        <div class="input-field col s6">
+                            <label> oeil droit</label>
+                            <div class="fileupload fileupload-new col s6" data-provides="fileupload">
+                                <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="{{ url_for('static', filename=filenames) }}"
+                                         alt=""/>
+                                </div>
+                                <div class="fileupload-preview fileupload-exists thumbnail"
+                                     style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                            </div>
+                        </div>
+                        <div class="input-field col s6">
+
+                            <div class="fileupload fileupload-new col s6" data-provides="fileupload">
+                                <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+
+                                    <img src="{{ url_for('static', filename=filename) }}"
+                                         alt="oki"/>
+
+                                </div>
+                                <div class="fileupload-preview fileupload-exists thumbnail"
+                                     style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                <div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input type="text" value="{{ msgG }}" readonly>
+                            <input type="text" value="{{ predictionG }}" name="PrédictionG" hidden>
+                            <input type="text" value="{{ classeG }}" name="classeG" hidden>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input type="text" value="{{ msgD }}" readonly>
+                            <input type="text" value="{{ PrédictionD }}" name="PrédictionD" hidden>
+                            <input type="text" value="{{ classeD }}" name="classeD" hidden>
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <label>{{result}}</label>
+                        <input type="text" value="{{result}}">
+                    </div>
+
+                    <div>
+                        <input type="text" value="{{Img_result}}">
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+
+
+                            <textarea class=" validate materialize-textarea" name="Diagnostics" REQUIRED></textarea>
+                            <label>Diagnostics</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <textarea class=" validate materialize-textarea" name="Observation" REQUIRED></textarea>
+                            <label>Observation</label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+
+                        </div>
+                        <div class="input-field col s4">
+
+                            <button class="btn waves-effect waves-light" type="submit" name="action">
+                                <i class="material-icons">save</i> Enregistrer
+                            </button>
+
+                        </div>
+                        <div class="input-field col s4">
+
+
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

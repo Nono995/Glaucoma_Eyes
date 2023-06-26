@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="description"
+              content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
+        <meta name="keywords"
+              content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
+        <title>Glaucoma_eyes</title>
+        <!-- Favicons-->
+        <link rel="icon" href="{{ url_for('static', filename='glaucome.jpg') }}">
+        <meta name="msapplication-TileColor" content="#00bcd4">
+        <meta name="msapplication-TileImage" content="{{ url_for('static', filename='glaucome.jpg') }}">
+        <!-- Favicons-->
+        <link href="{{ url_for('static', filename='css//materialize.css') }}" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css//style.css') }}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/custom/custom.css') }}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css//materialize.min.css') }}">
+        <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+        <link type="text/css" rel="stylesheet"
+              href="{{ url_for('static', filename='vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
+        <link type="text/css" rel="stylesheet"
+              href="{{ url_for('static', filename='vendors/flag-icon/css/flag-icon.min.css') }}">
+        <link type="text/css" rel="stylesheet"
+              href="{{ url_for('static', filename='bootstrap-fileupload/bootstrap-fileupload.css') }}">
+        <link type="text/css" rel="stylesheet"
+              href="{{ url_for('static', filename='advanced-datatable/css/demo_page.css') }}">
+        <link type="text/css" rel="stylesheet"
+              href="{{ url_for('static', filename='advanced-datatable/css/demo_table.css') }}">
+        <link type="text/css" rel="stylesheet"
+              href="{{ url_for('static', filename='advanced-datatable/css/DT_bootstrap.css') }}">
+
+
+    </head>
+</head>
+<body>
+
+<header id="header" class="page-topbar">
+    <!-- start header nav-->
+
+    <div class="navbar-fixed">
+        <nav class="navbar-color gradient-45deg-light-blue-cyan">
+            <div class="nav-wrapper">
+                <ul class="left">
+                    <li>
+                        <h1 class="logo-wrapper">
+                            <a href="/" class="brand-logo darken-1">
+                                <img src="{{ url_for('static', filename='glaucome.jpg') }} " alt="materialize logo">
+                                <span class="logo-text hide-on-med-and-down">Glaucome_Eyes</span>
+                            </a>
+                        </h1>
+                    </li>
+                </ul>
+                <ul class="right hide-on-med-and-down">
+                    <li>
+                        <a href="javascript:void(0);" class="waves-effect waves-block waves-light profile-button"
+                           data-activates="profile-dropdown">
+                  <span class="avatar-status avatar-online">
+                    <img src="{{ url_for('static', filename='images/avatar/avatar-7.png') }}" alt="avatar">
+                    <i></i>
+                  </span>
+                        </a>
+                    </li>
+                </ul>
+
+
+                <ul id="profile-dropdown" class="dropdown-content">
+                    <li>
+                        <a href="/profile" class="grey-text text-darken-1">
+                            <i class="material-icons">face</i> Profile</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="grey-text text-darken-1">
+                            <i class="material-icons">live_help</i> Aide</a>
+                    </li>
+                    <li class="divider"></li>
+
+                    <li>
+                        <a href="{{ url_for('logout') }}" class="grey-text text-darken-1">
+                            <i class="material-icons">keyboard_tab</i> Deconnexion</a>
+                    </li>
+                </ul>
+
+
+            </div>
+        </nav>
+
+    </div>
+</header>
+<div id="main">
+    <!-- START WRAPPER -->
+    <div class="wrapper">
+        <!-- START LEFT SIDEBAR NAV-->
+        <aside id="left-sidebar-nav">
+            <ul id="slide-out" class="side-nav fixed leftside-navigation">
+                <li class="user-details cyan darken-2">
+                    <div class="row">
+
+                        <div class="col col s8 m8 l8">
+
+                            <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#"
+                               data-activates="profile-dropdown-nav"><i>
+                                    class="mdi-navigation-arrow-drop-down right"></i></a>
+                        </div>
+                    </div>
+                </li>
+                <li class="no-padding">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li class="bold">
+                            <a href="/" class="waves-effect waves-cyan">
+                                <i class="material-icons">home</i>
+                                <span class="nav-text">Accueil</span>
+                            </a>
+                        </li>
+                        <li class="bold">
+                            <a href="/patient" class="waves-effect waves-cyan">
+                                <i class="material-icons">person</i>
+                                <span class="nav-text">Patients</span>
+                            </a>
+                        </li>
+                        <li class="bold">
+                            <a href="/DossierMedicale" class="waves-effect waves-cyan">
+                                <i class="material-icons">folder_shared</i>
+                                <span class="nav-text">Gestion des dossiers</span>
+                            </a>
+                        </li>
+                        <li class="bold">
+                            <a href="/New_Dasboard" class="waves-effect waves-cyan">
+                                <i class="material-icons">folder_shared</i>
+                                <span class="nav-text">Accueil</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+            <a href="#" data-activates="slide-out"
+               class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only">
+                <i class="material-icons">menu</i>
+            </a>
+        </aside>
+        <!-- START CONTENT -->
+        <section id="content">
+            <!--start container-->
+
+
+            {% block content %}{% endblock %}
+
+
+        </section>
+    </div>
+</div>
+<footer class="page-footer gradient-45deg-light-blue-cyan">
+    <div class="footer-copyright">
+        <div class="container">
+            <span>Copyright ©
+              <script type="text/javascript">
+                document.write(new Date().getFullYear());
+              </script> <a class="grey-text text-lighten-2"
+                           href="http://themeforest.net/user/pixinvent/portfolio?ref=pixinvent"
+                           target="_blank">Kuinkam</a> All rights reserved.</span>
+            <span class="right hide-on-small-only"> Design and Developed by <a class="grey-text text-lighten-2"
+                                                                               href="https://pixinvent.com/">Kuinkam</a></span>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="{{ url_for('static', filename='vendors/jquery-3.2.1.min.js') }}"></script>
+
+<!--materialize js-->
+<script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+<!--scrollbar-->
+<script type="text/javascript"
+        src="{{ url_for('static', filename='vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+<!--plugins.js - Some Specific JS codes for Plugin Settings-->
+<script type="text/javascript" src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+<!--custom-script.js - Add your own theme custom JS-->
+<script type="text/javascript" src="{{ url_for('static', filename='js/custom-script.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='advanced-datatable/js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='advanced-datatable/js/jquery.dataTables.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='advanced-datatable/js/DT_bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
+<script type="text/javascript">
+    /* Formating function for row details */
+
+
+    $(document).ready(function() {
+      /*
+       * Insert a 'details' column to the table
+       */
+      var nCloneTh = document.createElement('th');
+      var nCloneTd = document.createElement('td');
+
+      nCloneTd.className = "center";
+
+      $('#hidden-table-info thead tr').each(function() {
+        this.insertBefore(nCloneTh, this.childNodes[0]);
+      });
+
+      $('#hidden-table-info tbody tr').each(function() {
+        this.insertBefore(nCloneTd.cloneNode(true), this.childNodes[0]);
+      });
+
+      /*
+       * Initialse DataTables, with no sorting on the 'details' column
+       */
+      var oTable = $('#hidden-table-info').dataTable({
+        "aoColumnDefs": [{
+          "bSortable": false,
+          "aTargets": [0]
+        }],
+        "aaSorting": [
+          [1, 'asc']
+        ]
+      });
+
+      /* Add event listener for opening and closing details
+       * Note that the indicator for showing which row is open is not controlled by DataTables,
+       * rather it is done here
+       */
+      $('#hidden-table-info tbody td img').live('click', function() {
+        var nTr = $(this).parents('tr')[0];
+        if (oTable.fnIsOpen(nTr)) {
+          /* This row is already open - close it */
+          this.src = "lib/advanced-datatable/media/images/details_open.png";
+          oTable.fnClose(nTr);
+        } else {
+          /* Open this row */
+          this.src = "lib/advanced-datatable/images/details_close.png";
+          oTable.fnOpen(nTr, fnFormatDetails(oTable, nTr), 'details');
+        }
+      });
+    });
+  </script>
+
+
+
+
+</body>
+</html>

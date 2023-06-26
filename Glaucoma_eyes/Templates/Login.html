@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Glaucoma_Eyes</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" href="{{ url_for('static', filename='glaucome.jpg') }}">
+    <meta name="msapplication-TileColor" content="#00bcd4">
+    <meta name="msapplication-TileImage" content="{{ url_for('static', filename='glaucome.jpg') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='vendors/bootstrap.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='fonts/font-awesome.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='fonts/icon-font.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='vendors/animate.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='vendors/hamburgers.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='vendors/select2.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/util.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='vendors/animate.css') }}">
+</head>
+<body>
+<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
+				<form class="login100-form validate-form" action = "{{ url_for('Accueil') }}"  method = "POST">
+					<span class="login100-form-title p-b-55">
+						Se connecter
+					</span>
+                                <div >{{ msg }}</div>
+					<div class="wrap-input100 validate-input m-b-16"  data-validate = "nom d'utilisateur requis">
+						<input class="input100" type="text" name="NomUser" placeholder="Nom d'usager">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-user"></span>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "mot de passe requis">
+						<input class="input100" type="password" name="password" placeholder="Mot de passe">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-lock"></span>
+						</span>
+					</div>
+
+					<div class="contact100-form-checkbox m-l-4">
+						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember">
+						<label class="label-checkbox100" for="ckb1">
+							Mémoriser mes informations
+						</label>
+					</div>
+
+					<div class="container-login100-form-btn p-t-25">
+						<button class="login100-form-btn" type="submit">
+							Se connecter
+                        </button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript" src="{{ url_for('static', filename='vendors/jquery-3.2.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='vendors/popper.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='vendors/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='vendors/select2.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

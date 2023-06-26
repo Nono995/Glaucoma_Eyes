@@ -1,0 +1,153 @@
+{% extends "Fichemedicale2.html" %}
+
+
+{% block content %}
+<div class="container">
+                <div class="row">
+              <div class="col s12 m12 l12">
+            <div id="breadcrumbs-wrapper">
+    <!-- Search for small screen -->
+    <div class="row">
+        <div class="input-field col s12">
+            <h5 class="breadcrumbs-title">Gestion du patient</h5>
+        </div>
+        <div class="input-field col s12">
+            <ol class="breadcrumbs">
+                <li><a href="/modal"><span class="material-icons">list</span>liste des patients </a></li>
+                <li><a href="/NouveauPatient" class="active"><span class="material-icons">add_box</span>Nouveau
+                    patient</a>
+                </li>
+            </ol>
+
+
+        </div>
+    </div>
+
+</div>
+            <div id="basic-form" class="section">
+                <div class="divider"></div>
+                <div id="responsive-table">
+
+                    <div class="row">
+                        <table class="responsive-table" cellpadding="0" cellspacing="0" border="0" id="hidden-table-info"
+                               >
+                            <thead>
+                            <tr>
+
+                                <th data-field="nom">Nom et Prenom</th>
+                                <th data-field="sexe">sexe</th>
+                                <th data-field="mail">Email</th>
+                                <th data-field="tel">Numéro</th>
+                                <th data-field="tel">Profession</th>
+                                <th data-field="tel">Asurance</th>
+                                <th data-field="Consultation"> Action</th>
+                            </tr>
+
+
+                            </thead>
+                            <tbody>
+                            {% for row in rep %}
+                            <tr>
+
+                                <td>{{row["Nom_Pat"]}} {{row["Prenom_Pat"]}}</td>
+                                <td>{{row["Sexe_Pat"]}}</td>
+                                <td>{{row["Email_Pat"]}}</td>
+                                <td>{{row["Tel_Pat"]}}</td>
+                                <td>{{row["Profession_Pat"]}}</td>
+                                <td>{{row["Assurance_Pat"]}}</td>
+                                <td><a class="waves-effect waves-cyan modal-trigger" href="#demo-modal{{row["ID_Pat"]}}">
+                                    <i class="material-icons">description</i>
+
+                                    </a></td>
+                            </tr>
+                            <div>
+
+                                <div id="demo-modal{{row["ID_Pat"]}}" class="modal" >
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Modifier les informations sur le patient </h4>
+
+                                    </a>
+                                </div>
+                                <div class="modal-content">
+                                    <form class="col s12" action="{{ url_for('ModifierPatient') }}" method="POST">
+                                        <div class="row">
+                                            <input type="hidden" name="ID_Patient" value="{{row["ID_Pat"]}}"   >
+                                            <div class="input-field col s6">
+                                                <input id="sNom" type="text" name="Nom" value="{{row["Nom_Pat"]}} ">
+                                                <label for="sNom">Nom</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input id="Psrenom" type="text" name="Prenom" value="{{row["Prenom_Pat"]}}">
+                                                <label for="Psrenom">Prenom</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input id="emails" type="email" name="email" value="{{row["Email_Pat"]}}">
+                                                <label for="emails">Email</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input id="numeros" type="tel" name="Tel" value="{{row["Tel_Pat"]}}" >
+                                                <label for="numeros">Télephone</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input id="Profession" type="text" name="Profession" value="{{row["Profession_Pat"]}}" >
+                                                <label for="Profession">Profession</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input id="Assurance" type="text" name="Assurance" value="{{row["Assurance_Pat"]}}" >
+                                                <label for="Assurance">Assurance</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+
+                                            <div class="row">
+                                                <div class="input-field col s3">
+                                                    <a href="#!" class="modal-action
+					modal-close waves-effect waves-green
+					btn green lighten-1">Fermer<i class="material-icons left">close</i>
+
+                                                    </a>
+
+                                                </div>
+                                                <div class="input-field col s3">
+
+
+                                                </div>
+                                                <div class="input-field col s3">
+
+                                                    <button class="btn waves-effect waves-light right" type="submit"
+                                                            name="action">Enregistrer<i
+                                                            class="material-icons left">send</i></button>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </form>
+                                </div>
+
+
+                            </div>
+
+                            {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+              </div>
+                </div>
+            </div>
+
+
+{% endblock content %}
